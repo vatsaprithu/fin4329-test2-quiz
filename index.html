@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="googlebot" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIN 4329 — Bank Lending | Test 2 Quiz</title>
+<style>
+  :root {
+    --brand:#1F3864; --brand-light:#2E75B6; --accent:#f0a500;
+    --bg:#f7f9fc; --card:#ffffff; --border:#d5dde8;
+    --ok:#14804a; --ok-bg:#e3f5ec;
+    --err:#b42318; --err-bg:#fdecea;
+    --muted:#667085;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    background:var(--bg); color:#1a1a1a; line-height:1.5;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
+  }
+  input, textarea { -webkit-user-select:text; -moz-user-select:text; -ms-user-select:text; user-select:text; }
+  .wrap { max-width:820px; margin:0 auto; padding:28px 20px 80px; }
+  header.banner {
+    background:linear-gradient(135deg,var(--brand),var(--brand-light));
+    color:white; padding:28px 24px; border-radius:12px;
+    margin-bottom:20px; box-shadow:0 4px 14px rgba(31,56,100,.15);
+  }
+  header.banner h1 { margin:0 0 6px; font-size:22px; font-weight:700; }
+  header.banner p { margin:0; opacity:.92; font-size:14px; }
+  .card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:10px; padding:22px 24px; margin-bottom:18px;
+    box-shadow:0 1px 3px rgba(0,0,0,.04);
+  }
+  h2 { color:var(--brand); font-size:18px; margin:0 0 12px; }
+  h3 { color:var(--brand); font-size:15px; margin:0 0 6px; }
+  label { font-weight:600; font-size:14px; display:block; margin-bottom:6px; }
+  input[type="text"], input[type="email"] {
+    width:100%; padding:10px 12px; font-size:15px; font-family:inherit;
+    border:1px solid var(--border); border-radius:6px; transition:border-color .15s;
+  }
+  input:focus { outline:none; border-color:var(--brand-light); box-shadow:0 0 0 3px rgba(46,117,182,.15); }
+  .form-row { margin-bottom:14px; }
+  button {
+    background:var(--brand); color:white; border:none;
+    padding:12px 24px; font-size:15px; font-weight:600;
+    border-radius:6px; cursor:pointer; font-family:inherit;
+    transition:background .15s;
+  }
+  button:hover { background:var(--brand-light); }
+  button:disabled { background:#aaa; cursor:not-allowed; }
+  .q {
+    padding:16px 18px; border:1px solid var(--border);
+    border-radius:8px; margin-bottom:16px; background:#fff;
+  }
+  .q.correct { background:var(--ok-bg); border-color:var(--ok); }
+  .q.incorrect { background:var(--err-bg); border-color:var(--err); }
+  .q-num { color:var(--brand-light); font-size:13px; font-weight:700; margin-bottom:4px; }
+  .q-text { font-size:15px; margin-bottom:10px; font-weight:500; }
+  .choices label {
+    display:block; padding:8px 12px; border:1px solid var(--border);
+    border-radius:6px; margin-bottom:6px; cursor:pointer; font-weight:400;
+    font-size:14px; background:#fafbfd; transition:all .1s;
+  }
+  .choices label:hover { background:#eef2f8; }
+  .choices input { margin-right:8px; }
+  .choices label.correct-ans { background:var(--ok-bg); border-color:var(--ok); font-weight:600; }
+  .choices label.wrong-ans { background:var(--err-bg); border-color:var(--err); }
+  .explanation {
+    margin-top:10px; padding:10px 14px; background:#fff;
+    border-left:3px solid var(--brand-light); font-size:13px; color:#333; border-radius:4px;
+  }
+  .result-hero {
+    padding:30px 24px; text-align:center; border-radius:10px; margin-bottom:18px;
+  }
+  .result-hero.pass { background:var(--ok-bg); border:2px solid var(--ok); }
+  .result-hero.fail { background:var(--err-bg); border:2px solid var(--err); }
+  .result-hero .big { font-size:48px; font-weight:800; margin:8px 0; }
+  .result-hero.pass .big { color:var(--ok); }
+  .result-hero.fail .big { color:var(--err); }
+  .result-hero .label {
+    display:inline-block; padding:6px 16px; border-radius:20px;
+    font-weight:700; font-size:14px; letter-spacing:.5px;
+  }
+  .result-hero.pass .label { background:var(--ok); color:white; }
+  .result-hero.fail .label { background:var(--err); color:white; }
+  .muted { color:var(--muted); font-size:13px; }
+  .warn {
+    background:#fff8e1; border-left:4px solid var(--accent);
+    padding:12px 14px; margin:12px 0; font-size:14px; border-radius:4px;
+  }
+  .rules {
+    background:#fee; border:2px solid var(--err);
+    padding:16px 20px; margin:14px 0; border-radius:8px;
+  }
+  .rules h3 { color:var(--err); margin-bottom:8px; }
+  .rules ul { margin:8px 0; padding-left:22px; }
+  .rules li { margin-bottom:6px; font-size:14px; }
+  .info-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0;
+  }
+  .info-pill {
+    background:#eef2f8; padding:10px 14px; border-radius:6px; font-size:13px;
+  }
+  .info-pill strong { display:block; color:var(--brand); margin-bottom:2px; }
+  .hidden { display:none !important; }
+  .deadline-ticker {
+    background:var(--brand); color:white; text-align:center;
+    padding:8px; font-size:13px; font-weight:600; border-radius:6px; margin-bottom:14px;
+  }
+  .countdown-good { background:var(--ok); }
+  .countdown-warn { background:var(--accent); color:#111; }
+  .countdown-closed { background:var(--err); }
+  .violations {
+    background:#fff0f0; border:1px solid var(--err); padding:8px 12px;
+    border-radius:6px; font-size:12px; color:var(--err); margin:10px 0;
+  }
+  .agree-row { margin-top:14px; padding:12px; background:#f7f9fc; border-radius:6px; }
+  .agree-row label { display:flex; align-items:flex-start; gap:8px; font-size:14px; font-weight:400; cursor:pointer; }
+  .agree-row input[type="checkbox"] { margin-top:3px; }
+  @media (max-width:600px) {
+    .info-grid { grid-template-columns:1fr; }
+    .result-hero .big { font-size:36px; }
+  }
+
+  /* ===== Built-in Calculator / Scratchpad (during quiz only) ===== */
+  #calcPanel {
+    position: fixed; top: 90px; right: 20px; width: 280px;
+    background: #fff; border: 2px solid var(--brand); border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.15); z-index: 9999;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    display: none;
+  }
+  #calcPanel.open { display: block; }
+  #calcPanel .header {
+    background: var(--brand); color: white; padding: 8px 12px;
+    border-radius: 8px 8px 0 0; font-weight: 700; font-size: 13px;
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: move;
+  }
+  #calcPanel .body { padding: 10px; }
+  #calcInput, #calcScratch {
+    width: 100%; font-family: "Courier New", monospace; font-size: 14px;
+    padding: 6px 8px; border: 1px solid #ccc; border-radius: 4px;
+  }
+  #calcScratch { height: 120px; resize: vertical; margin-top: 6px; }
+  #calcResult {
+    padding: 8px 10px; margin-top: 6px; background: #eef2f8;
+    border-radius: 4px; font-family: "Courier New", monospace; font-size: 16px;
+    font-weight: 700; color: var(--brand); text-align: right; min-height: 20px;
+  }
+  #calcPanel .hint {
+    font-size: 11px; color: var(--muted); margin-top: 4px;
+  }
+  #calcPanel button.close-x {
+    background: transparent; color: white; border: none; font-size: 18px;
+    padding: 0 4px; cursor: pointer;
+  }
+  #calcPanel .keys {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 6px;
+  }
+  #calcPanel .keys button {
+    padding: 8px 0; font-size: 14px; background: #f0f2f5;
+    color: #111; border: 1px solid #d0d6df; border-radius: 4px; cursor: pointer;
+  }
+  #calcPanel .keys button:hover { background: #e0e4eb; }
+  #calcPanel .keys button.op { background: #e6eef8; color: var(--brand); font-weight: 700; }
+  #calcPanel .keys button.clear { background: #fdecea; color: var(--err); font-weight: 700; }
+  #calcToggle {
+    position: fixed; top: 20px; right: 20px; z-index: 9998;
+    background: var(--brand); color: white; border: none;
+    padding: 10px 16px; font-size: 14px; font-weight: 700;
+    border-radius: 6px; cursor: pointer; display: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,.2);
+  }
+  #calcToggle.visible { display: block; }
+
+  /* ===== Timer bar during quiz ===== */
+  #timerBar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10000;
+    padding: 10px 16px; background: var(--brand); color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-size: 15px; font-weight: 700; text-align: center;
+    display: none; box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  }
+  #timerBar.visible { display: block; }
+  #timerBar.warning { background: var(--accent); color: #111; animation: pulse 1s infinite; }
+  #timerBar.expired { background: var(--err); color: white; animation: pulse 0.6s infinite; }
+  @keyframes pulse { 0%{opacity:1;} 50%{opacity:.7;} 100%{opacity:1;} }
+  body.quiz-active { padding-top: 44px; }
+</style>
+</head>
+<body oncontextmenu="return false;" oncopy="return false;" oncut="return false;" onpaste="return false;">
+
+<!-- ===== Built-in Calculator / Scratchpad ===== -->
+<div id="timerBar">Timer: 1:20:00 remaining</div>
+<button id="calcToggle" onclick="document.getElementById('calcPanel').classList.toggle('open')">🧮 Calculator</button>
+<div id="calcPanel">
+  <div class="header" id="calcHeader">
+    <span>🧮 Calculator &amp; Scratchpad</span>
+    <button class="close-x" onclick="document.getElementById('calcPanel').classList.remove('open')">×</button>
+  </div>
+  <div class="body">
+    <input type="text" id="calcInput" placeholder="Type an expression, then press Enter" autocomplete="off">
+    <div id="calcResult">0</div>
+    <div class="keys">
+      <button onclick="calcAppend('7')">7</button><button onclick="calcAppend('8')">8</button><button onclick="calcAppend('9')">9</button><button class="op" onclick="calcAppend('/')">÷</button>
+      <button onclick="calcAppend('4')">4</button><button onclick="calcAppend('5')">5</button><button onclick="calcAppend('6')">6</button><button class="op" onclick="calcAppend('*')">×</button>
+      <button onclick="calcAppend('1')">1</button><button onclick="calcAppend('2')">2</button><button onclick="calcAppend('3')">3</button><button class="op" onclick="calcAppend('-')">−</button>
+      <button onclick="calcAppend('0')">0</button><button onclick="calcAppend('.')">.</button><button onclick="calcEval()">=</button><button class="op" onclick="calcAppend('+')">+</button>
+      <button onclick="calcAppend('(')">(</button><button onclick="calcAppend(')')">)</button><button class="clear" onclick="calcBackspace()">⌫</button><button class="clear" onclick="calcClear()">C</button>
+    </div>
+    <div class="hint">Examples: <code>160000*0.9235*0.153</code>, <code>(1200000-700000)-90000-210000-40000</code></div>
+    <textarea id="calcScratch" placeholder="Scratchpad — use this for multi-step work. Each line is separate."></textarea>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="banner">
+    <h1>FIN 4329 — Bank Lending | Test 2 Quiz</h1>
+    <p>Chapters 6, 7 &amp; 8  •  20 questions  •  Passing score: 80%  •  Two attempts allowed</p>
+  </header>
+
+  <div id="deadlineBar" class="deadline-ticker"></div>
+
+  <!-- ============ LANDING ============ -->
+  <div id="landing" class="card">
+    <h2>Before You Begin</h2>
+    <p>This is a graded quiz covering material from Chapters 6, 7, and 8.</p>
+
+    <div class="info-grid">
+      <div class="info-pill"><strong>Attempt 1 — open window</strong>12:00 PM – 1:20 PM Mountain Time, April 16, 2026</div>
+      <div class="info-pill"><strong>Attempt 1 — your personal timer</strong>1 hour 20 minutes from the moment YOU click Begin</div>
+      <div class="info-pill"><strong>Attempt 2 deadline</strong>11:59 PM Mountain Time, April 16, 2026</div>
+      <div class="info-pill"><strong>Passing</strong>80% or higher</div>
+    </div>
+
+    <div class="warn">
+      <strong>How your score is calculated:</strong><br>
+      Each question correct on <strong>Attempt 1 = 1.0 point</strong>. Each question correct on <strong>Attempt 2 (retake) = 0.5 points</strong>. Final % = total points ÷ 20.<br><br>
+      <em>Example 1:</em> 16/20 on Attempt 1 + 3/4 on Attempt 2 = 16 + (3×0.5) = 17.5/20 = <strong>87.5% PASS</strong><br>
+      <em>Example 2:</em> 10/20 on Attempt 1 + 10/10 on Attempt 2 = 10 + (10×0.5) = 15/20 = <strong>75% FAIL</strong><br><br>
+      This means a second attempt can only <strong>improve</strong> your score — it cannot lower it.
+    </div>
+
+    <div class="rules">
+      <h3>⚠ Test Environment Rules — READ CAREFULLY</h3>
+      <p style="font-size:14px; margin-bottom:8px;"><strong>While taking the quiz, you may NOT do anything else online.</strong> The following restrictions are enforced:</p>
+      <ul>
+        <li><strong>Access is restricted.</strong> You must enter your <code>@miners.utep.edu</code> email and the access password given by your instructor.</li>
+        <li><strong>Fullscreen mode is required.</strong> The quiz will enter fullscreen when you begin. If you exit fullscreen (Esc, Alt-Tab, Win key), it is logged and reported.</li>
+        <li><strong>Tab-switching is detected.</strong> Every time you switch tabs, minimize the window, or switch apps, it is logged with a timestamp and included in the results file you upload to Blackboard.</li>
+        <li><strong>Right-click, copy, paste, and printing are disabled.</strong> Keyboard shortcuts (Ctrl+C, Ctrl+V, Ctrl+P, F12, etc.) are blocked and logged.</li>
+        <li><strong>The back button will NOT allow you to resubmit.</strong> Once you click Submit, your answers are locked for that attempt. Do not navigate away during the quiz.</li>
+        <li><strong>Your progress is saved to THIS browser only.</strong> Do not switch devices or browsers between Attempt 1 and Attempt 2.</li>
+        <li><strong>Excessive violations may invalidate your attempt.</strong></li>
+        <li><strong>You MUST download your results and upload them to Blackboard.</strong> After submitting each attempt, click the <b>Download My Results File</b> button to save a JSON file, then upload that file to the "Test 2 Quiz Results" assignment on Blackboard. This is how your score is officially recorded — FERPA compliant, no third-party service involved.</li>
+        <li><strong>After you submit Attempt 2, the quiz is permanently closed for you.</strong> You cannot retake it. Make sure you finish each attempt carefully.</li>
+        <li><strong>A built-in calculator and scratchpad is available during the quiz.</strong> Click the 🧮 Calculator button at the top-right. Type expressions like <code>95000+1800+12500+1200-13500</code> and press Enter. Use this — do NOT tab away to open Excel or a separate calculator (that would trigger a violation).</li>
+        <li><strong>Attempt 1 has a personal 80-minute timer</strong> that starts the moment you click <em>Begin Attempt 1</em>. A countdown bar at the top of the quiz shows your remaining time. You will get a 5-minute warning. When the timer reaches 0:00 you MUST click Submit and then download your results file to upload to Blackboard — do not delay.</li>
+        <li><strong>If you close your browser or lose power mid-quiz:</strong> your answers are auto-saved as you go. When you reopen the URL on the same browser, your answers and your timer (which keeps counting down even while you are away) will resume. If you do not return before your 80 minutes expire, your quiz is auto-submitted with whatever you had answered.</li>
+        <li><strong>You MUST upload your Attempt 1 results to Blackboard</strong> regardless of how Attempt 1 ends — submitted normally, auto-submitted by the timer, or auto-submitted because you never came back. The results screen always shows a download button.</li>
+      </ul>
+    </div>
+
+    <div class="form-row">
+      <label for="studentName">Your full name</label>
+      <input type="text" id="studentName" placeholder="First and last name" autocomplete="name">
+    </div>
+    <div class="form-row">
+      <label for="studentEmail">Your UTEP email (@miners.utep.edu for students)</label>
+      <input type="email" id="studentEmail" placeholder="you@miners.utep.edu" autocomplete="email">
+    </div>
+    <div class="form-row">
+      <label for="accessPassword">Access code (given by instructor)</label>
+      <input type="text" id="accessPassword" placeholder="Enter access code to unlock quiz" autocomplete="off">
+    </div>
+
+    <div class="agree-row">
+      <label>
+        <input type="checkbox" id="agreeBox">
+        <span>I understand the test environment rules above. I agree that tab-switching, fullscreen exits, and other violations will be logged in my results file and visible to my instructor when I upload to Blackboard. I will take this quiz on my own.</span>
+      </label>
+    </div>
+
+    <button id="startBtn" style="margin-top:14px;" disabled>Begin Attempt 1 →</button>
+    <p class="muted" style="margin-top:10px;">Your progress is saved on THIS browser and this device. Do not switch browsers between attempts.</p>
+  </div>
+
+  <!-- ============ QUIZ ============ -->
+  <div id="quiz" class="hidden">
+    <div class="card">
+      <h2 id="attemptLabel">Attempt 1 of 2</h2>
+      <p class="muted" id="attemptInstr">Answer all 20 questions. You will see your score immediately after submitting.</p>
+      <div id="violationsBox" class="violations hidden"></div>
+    </div>
+    <form id="quizForm"></form>
+    <div class="card" style="text-align:center;">
+      <button type="button" id="submitBtn">Submit Quiz</button>
+      <p class="muted" style="margin-top:10px;">You can only submit once per attempt.</p>
+    </div>
+  </div>
+
+  <!-- ============ RESULTS ============ -->
+  <div id="results" class="hidden">
+    <div id="resultHero" class="result-hero"></div>
+    <div class="card">
+      <h2>Review: Your Answers</h2>
+      <p class="muted">Correct answers are highlighted in green; your wrong answers are highlighted in red.</p>
+      <div id="reviewBlock"></div>
+    </div>
+    <div class="card" id="nextStepBlock"></div>
+  </div>
+
+</div>
+
+<script>
+// =================== CONFIG ===================
+// Attempt 1: opens 9:00 AM MT Apr 16. No new Attempt 1 after 1:20 PM MT.
+// Student-facing countdown = 80 min. Actual hard stop = 85 min (5-min grace for download/Blackboard upload).
+// During the grace period (80-85 min elapsed) violation logging is disabled so students can freely
+// switch tabs to upload their JSON to Blackboard.
+const ATTEMPT1_OPEN_ISO                 = "2026-04-16T12:00:00-06:00";
+const ATTEMPT1_DEADLINE_ISO             = "2026-04-16T13:20:00-06:00";
+const ATTEMPT1_DISPLAY_MINUTES          = 80; // what student sees on countdown
+const ATTEMPT1_HARD_STOP_MINUTES        = 85; // actual auto-submit deadline (silent 5-min buffer)
+const ATTEMPT1_DURATION_MINUTES         = ATTEMPT1_HARD_STOP_MINUTES; // for resume logic
+// Attempt 2 window: from when student submits Attempt 1, until 11:59 PM MT Apr 16. No individual timer.
+const ATTEMPT2_DEADLINE_ISO     = "2026-04-16T23:59:00-06:00";
+// Hard kill: quiz becomes completely unavailable after this date/time
+const QUIZ_KILL_ISO = "2026-04-17T00:00:00-06:00";
+
+// FERPA-COMPLIANT: No third-party service. Results delivered via student's own
+// @miners.utep.edu email account via mailto:. Data stays inside UTEP's email system.
+const INSTRUCTOR_EMAIL = "pvatsa@utep.edu";
+
+const STORAGE_PREFIX = "fin4329_test2_";
+// Access gate — the CODE is NEVER in this file. Questions are encrypted with it as the key.
+// Decryption happens in-browser using Web Crypto API. Wrong code = decryption fails.
+const EMAIL_DOMAINS_ALLOWED = ["@miners.utep.edu", "@utep.edu"];
+
+// =================== ENCRYPTED QUESTIONS (AES-256-GCM, PBKDF2-SHA256) ===================
+const ENCRYPTED_QUESTIONS = "s0+hv3R8uVJzkFJ60DjVkqha/gEI/p3Nw9N2Qi1i2e7kWODjbcVhGmKVw+e4Xe1li8VezGFj0/hlY5yF36MQlBwX+Bf4Srek1Z2C+4ujP9bSNjdImSR9Se1abGjPva4HxPVJ6I7pa7Ny42gXCMpoiY8wr5v47EdAQ5ALFruqvf4o/zr/oROD+P493cPMDnQJ8qVuIXQ+SKQJLTVAw3Oqwx41jqmk12dK0uEUNqWAUmLi9QkWaxXFJGq2zMhwcvZtzJcO2nv5XVNr+4Rbrz45bfxcfjTayq3XgBuErve+zXzM5lmSgaJHLLrUgc3VtCTfuMAsX6qWCMslUtHMJZ7ZSKAF7K4TLLxcih+Ncw8dKypAT9UiqXTn4xFNwL9PYLuXljYD6SOlDlAbvF3C0bmOfhdnjHnbvPYVvU1Ca8fVRAlG250KoTY+BzaS7+acNIAugt63Y6MoCFBLgLR/EFwjqy9TM840POg0/5jOF64yOzhmF3x0gJ6d5M+TwmjW3UEkRYTOIiTMEuui+x2n0iEXbVFlH01FjQj9Omn+De1KgLLwE9UH3vgtTZyvb4TRMokuPxdZ9rVLI9TbnqqsI6k6MPshxt6GZmSQDH1i+pq9rIHkDxvmvmhr5ibt8PezOlIBPcyvgaaILfl64JdlSKV2A/+jLR1gPGs8YK07xE4CguP9bBFqo5sirIT5y3sJEn590irwj8fxLZy6zomqHM+rlLKU10lnhBWCj60+OV+ejxnPLaE6oAB1NDD/bOmL+T97rbif0yYMAScA159NApTu1YthrEYHVFZw20gfxk7/qzFwggQy6TTyiF/lcpdT/UbVC2b7uAqRDXZ7PX9Omf8p1gzlkZRCsDU8aBz1zQjmEyp0sfU531sDaO+MYfIOd9I+4obz3laLo0nJBypHG8XJhAJk7kd/GRnA/0WTTRJrnyMghs3DUlI5iifm8iuKFK/2rkM/ID4fKNfWc+l1jqdK7Tpt/+5iMldU/xrVSI4uFseBIF0XyEBADLLqSvcMfCyfKy7TBjBKNBbJWuC+la1Q2GYWb+svpyumLnZaNqPRUbMu/Gp31ErqN10NfOncxiWKiaGv5WQ0w0ngjejYIgZfC6AgdJnuV7JtFQIDyKRxiTJliDttPPvSva7iYBxBtsEDIDSWWrP4YnfedNrWfim41qGjn9VjM6WWTdDdZywTcyxi9abXIGHY85AEGBHxEsO3mvyXsyYfzVsxFJ10PejNlXbCvsyKFOghGKSEWplZgDrYyxax5jTDYfrfTDEmXtbIwuJAP6T6m9Oo2VV9rp8H0uSdCg1PPoe+zyFYA5nW3AU91j73Ri4FDm2sd984qWBLcrDJw95V8UPPxNWOHUKjL6RWYVA/m/BjlhRl5Ekz0ZvsuUy2OsDKXL4DSesXh2tulfcg3olXxwsFWxiAJ0/xZuB/ulsui7G5wA8DESkGqpIob4eHO8fwR2kR5ufOqBnWoruMc+H6OF38qOW08cSumFSmuoMqLbE/iP3NNElisYqgOkPJ5aOX6oZtsoqfcz7HJKH2JE1Vy7lyiX1quJCFK6+bWAt3nhgVUQtfSIuN36t1A6bi6xBARUF6SxDqJ8wWaETCOA/y7twImz20VcL4uhpeQm2SCyPHMxLjYdPORlLOt5or1JtLywEVSFwT8V4m9kjpvNnl6mFVSbOb3pTCxPAMa00aYsdTotzUszyZsdsFlb8f3O2P/5Cr+Z5FBmZkIxS6wz60Z7YKBV77KLf7iEeQgH3aN4B8xiSDIsnuatB34xdNkmPznciObW7E0cKWu/8zI/AvVWtPD2az8TZtPN8zIY/iY3RC3u4X/gw+0ZdfNZJ+f+o6+o251CnIhiNQoUfZEzqnncaR7hhEdtAJi+p3s/LbxF54OvtRuGQoL2CBuCpdcmNbOLdCE/NM4w7anMkRZ23KpIHeSm+pgkCSbKgM6jdKQesBjN1JW2+bRY5Q75ioOcn+0E+sclO3V/FQVQ6QOpTujY7132kCTP4q0VqZXndrSIZiEmLpVm0bXSCqAjLunOtbehkelFOweDXaP8b/UhSjrQFRb4vdMDsuTMRpIkajHplp1f2lfOpHxDPZe7JqNTqzyjbKoBBetMF8JzLGYucIwMXDJiA0+f7xL2lB/NTbawwd5eT4hBQ833jQooQ4zshyL9lH2kZUuI1mm5hB0KBfeDQcdXyEcWfYCTNx6z8F9t8wneTBpKtqSfXHwtYOJuGAfc0zMxn7Hck4B1XrhbwtYj2qyConGC/rR+Xy0Ym5Mf2454FwwuQgPvnlEO467c8eqUBPvpg/J1aecAVeM+SCsWEm5wSAmDr1rVbGBZOolEJM3+mq3nYWBR+hvrOl0HSKTuHpqHA6+plzUiUfTg+elTJq9qIj4ZjF1yTkMpPsC1uP2QoixIfFZNK//2GxI14jycz2lnT3CTprM0ttIuqWWwpzKigl7PrkEGF04jmdAEYcR3w//NvKaf9E/pGbD9L1lTYyqClW1n6KBYH/wJRMe90X1sraToJy3M46QBPVHB873C4SgO8siYbjEA2GKd2Gb3R0tIUWWCLtkAQWLQnDkZ1Xm5AiLzhMM6QAUS+NYr7YwntoKSN5BFaW7P50ThjAa+GhGu5LM1mhwYBq9ckL6hXkclcIrkm/C0AwjkwP8rRPNGy5MEX1/lgKyj/YnE48hIKDRw3sTa9XCjiSVKc8rdKa2SI/r3XrxXh8rWHr0vNAzjceFisdrN7qwRR/5rn+frfujmiWB9cdADsSmbdAQaj553fUF40iWaMVihkCIraGHprCcnZ7OSOsRvzJqCdDOWL9eoIsd1f2D1WwC9kva77zDyKXwiO/G7j7SJm0Q8yDawJ5v3c04jbLOA/ScJqgCEVSHNxn7NeCzKD1eu7PJzXXI0+sGg5q2NZjXxZuVZaAlgeXWskjbKCAGsFAOth/B6GhoLXmd1q0b0hUNmQLXgEyFm5Q5lytjFe0awpS9QxaQg+xyOkM6zFhWrase28L/baiTp5kFlNGQaRIIa69N6aVP4I/FvD1EN3vRHhkRLiBuX950edmUXjt+3VWT27TNUFC75q2mkvpHM1JFbd0IS7XxMWzrqi+T2z6PtRVQICGAJ1yQXGYOKzTBzUuuPmDX/92TreT4SK/Gv0tpgKha46PQxkk8hEt7sOOKqFCV1qMNnu9xAYH8X7dSAWuqO+03r6sJNND0VzkSnphA0Qs1S+CpKeUZCpFLZ5YXPP6lvxZRQxg9K4lj9KFH3vdHo2F3bQl7LXshBVKjgd6S8I87isQBZc+R/ROSRfsX9liKZeCNp/dBZtN2eS0yEPzIlwWt7zooZv/O3F+QV1/D1VzBTrBb1lbL7L959/ctM8UVCnoMJT5a5Z/bKGcGbk3o6QE5LxU+iTzx1Su0c2yCAP/avWw/GmS5aBegSE/eduX2PepNv1dnHM0HST09AIaSsYafvgQNFq8tNbkGELRI5Gg1gtWkPquweKoSRxbVQkaOJHfxQZWeXlci3Xn66hnXBJn069wZT4SS7PlEnN3FXtTZsZdqgKn/DeX63xzSsP7aAYqeko+baqQIPCc4EQ2NQGTi2wOpcL1NUDhxhgFeA/cCOVM2DMgoJXZesVlFi+1pTgMzX9lU//VtuXMGP56QU9hy9JUceNpiFZ2SF+E04ifUN3RsLeSkKGMRwlq5RMsaDoWvKUnuwQlK8YlOjKosxT0Zgy91A5TQPRiODTXIqLqvzZEgbCvS2tCQ4gG6I55oKe5FRQDK2jntF3u8CFfH8Yu5bDU1ndGuHVXW1+Zn7c0/xL4gfqzh7mKf1/MO2v9YX3frOArKE8U54rvebOmBvcLoTHsDmjmbOBWZQWXVUHdzYGxHsMX1NSRkR9KxEseVGZqt2BoS5i5Xem5cd38NCrDb5t0xm+aQQJdRAf09e9pR2bFywAz8miTQZmhUd5B98HleoNYQH/A6wSZmUjViuFz6pXv+obFVfkSsvEgHTF3TNcEnECPpJIVUCDQaP1ZYFQyd3x8IJQj94uMH4tD/VZrkpCSAwjUaPJy2v8y0B9yyx200mMYs1gYQJsElf/aBBynh6QQg6+1/A8JsWzK7IJyOjOLHchL+FH+Osk9gH1ISzk58bWMStSahOBC/ukn14Daez+ne4yia61oXygYoGpmyOFAGiFlRr1WHBOMqnyoc/KK0+o+Lk2rNXkFO6c+iDpqtoQkU8LKvISfbpq2Qy6ceTf2qsObV/z/tftYt1zRV7ogLqb0xJXfb1k1UUIqroybCMv+mNOYigMn3obHMW8eO5Jj41PFtbMqSlnY3eSFLoc+Fmg3vNKOFf1f5bYC/S4bppwo98n8uQFjNoderJlzCDFlOm+OnG7bzBaCSn2SGDUeJPMYZDleOUMj6p3BC+pNpd/bDBs0icVp7ekj9x1/XedUdsXptPsrD+JxqGfmClt2lrvp6U5nf+wTtTX9k+1x/wzVPNT49t+R/7fflIYtds+D1DvcxuyAKDxUB1BaCtnSg1E1flSD4NTKP31NaXr7Og3nhrT7PZBqo0f60nZkrKxPCy0gee9LBaTvsFGtaJA3Ou6pHmIbT+y5OSJYweWQQt/IpCtRLycyyB5taOO2sqjTlQynOR07GMETUoA3SIVKTUUNUAvucfBenLMOPZNDHJHGLehA1k1jSSar1uSt5yVDIE8Ma4hVCw9dbsflJUeQvTThqBopVfp9Flc/7UiPyyAvVm741eCjA+3xKgaf9Jc5CkmUm/v0J2wRvoSou3heGlxv9vjqxU2VkQFQe8nf117m09GEfimm0sdxG/8hEna8axFaIGsgCZOQ5JBOmWjncaEAnv+S8GkH3dwEiPNVcdY5+6OYdbtje3d3ghlCg0vDwiI+jvZ2ZqIfu0/ccftwN4t8Mzz5S5dPNtRLJsRCV2sm63NUwPby0LlqzUGXR4smfU8H4OO0toELNFZTiReVayi8ai1nz/6ioBLHWpsE5PLBI2jcGRvgxwjVY4cijwqXu/QzdFrUBOA4MF/zSroPtfH6MFXIDxUIDFbz7w12Fo7M4qT41wqvJaWA6BgQxekTCATv579oENnfft6hXCtnGoIbcyJfaw+m3wFDXT18Pfn+pzg/x9BlpAfNi+429lFedfYb39DKctAVv70bwKuLXPWmVCWjNF6Xb7PO4IJTQQsrIJxZE9FEi94F/R2e10IQoaXzSVNW3NgyMFnGErXemR0y/kViqzkPMH+CTutVhgnjgtuT38dKG7pWSyjGPYMgNFYt3JEW+Vx7PbkKI85BhwGz6+c23+nh+4UVZrAfoZFASa8u+ly/+2xXryXCkLg2jn1muGua0Z0PTt1jy1ZLOJIDChC+9NXpSUxQOTznKyXTpFdWm7QM3H6JMFBPTPxoyv3LXVtax5zzc2rQ4yuLdJjCkJMu9jgIhl82Mv/c1RH4qpTpzdpbINLhtUKRGnwmmCsgcGar66zOeJicSh4MVJYm5BYdrDiW3+pbCURNv5W6hgDwLqeTpWY7KkSTweJya2T8yu0c0S0rC0b9WFnMccLaSkiONlAeajfNOHKVeKyoAZmiuMnVxi+FAJ2AtK5AoTdc8cPR2pE2okLAiDZvwsDnmR+g0hRw6XZ/4Z3wLrbAaPkYhyJz4jTnYYnhtCE/g7VtXUZcV685wlh9El0XxeyHPB0uVZtiTb93lHwDL4bPe2XLx2urOOVlKjp6eQSpslpJ06OXWO5BsNyCI10+c9F26L9jpvJk2xWSI+WoLJz2I+Ycg+ObNFkgxNJtoKq0QAwK6bwzpTkE0tOu812B1CeEiVaNb8IZJVYOuzzlB3d3boOuziV7XfXI0m5MaJXgzBfsG32iyaiXBxVeErb1g5rpcAMyAT+CBsWPT3W9NNRdwQpE2iuVixuF8ieb9oT+Yn1kfqemN6SNmN1odFhNYN7VkEt1qr6SlOwo/y3x4i9jqBWauJYBdOWH9rj9GFLbYU2icLPLR20x3ZlEJwYSJvXS4BYvCveqR8p+9S/rHozfiQtOAYzaY5S27MyMF1CbfQHAHiF/3gwXxLSatmnd2A/ORxG6l8hKoDEVaZzM3zLIA9VdhUrtAQyHSgbBHYNFfCSWALtr16afTP3rqkXGyYr8tuu5wJNRRTE0nekUzzWWeoDVpDpfVSupkXJ85BKCvOOz0hXdMOcSicYFPB6OUC3PlIuNOWXHiULZ0b2vbIK8GouOmCpa2YYA2GcE1cVlAYxmLZpRJ5OW9FetW6NZjrr6gtAgjJHo6DTn7woUk+6LoGNzd1OXDXeIjgvU1XKhA5spG8mi/jpe4FWkK+Uc7HvaantWl6mw5J7E47F7KvzvATgWncB+CHmAT+EYuK9DzE/w9hRwNxE0yV/+NpbcJdgiZ35dm2Ls5zO1XfoRgxmCj92D1sf8+VxGhy9jSLAOPXcxls+CrIkofzcdEAhtjqst68ZZtzP6srNPhpUBuiQQXUp5tCsyFnIAdvNLJ1A7L7MovrXpotlC/zVVXWyLbTjpn0ZUIkt/VMeIWLNjPlclm4rNq+hXtET3V9gyL/rxxSloHxUa6VXzLEsiIlORnOi3BSvZANeuApqr2I2VKD7cu7Y147vQuawmIIn1RD59CPBPUhayDMHWdlruMZD7zrdfqZdNYEN6GElh1l14D5ZYwRwTnrjlvzvQBuAeTDcDaiJavjVOzzpRiEAptvHXy/PqR+Tmg8Mfu+eVjFt/OXN6ZpdjJ6S7ZkyYCnaTC85UwUdm6g5rqbCRiZLnS2PavJ2tZMpIiJa3Vk8SIb0KlHfIZnCdpBzko7q2a/EfwMvxdZ6EdefzVEzxKz7cUgg7FcmyNezuYtw0gi9SCS/HAQv3RN5Rk3F1vhc/LtgLEIr8HR6aQ+L7W874DHI2B8l4pRAwb/jBOAJncS92vDsqz7kgbw2yxlbC1501uPY1HobdSi+UncACfvSDaweCsUDOch8aauRqk81zL17lLCDX8mh0BWOXCGRNpgA0x+QAE+eWALBZsSmt2a5MxOgH2ldjGqsIHrAvlsqHW/qwGb0Vpp/UmZmu5ePQhQzv2j3ssMQ5fZSSyGTqf+yfDW3wJtXLlthg8qSGWyBTQ1NS5+ix1OgQx+78Cf4qTLAIA6/IpCRnkTRLYqwhOrPqyZ3v+0CxKzX1qSg4/b2TcLJ/s8K6au2jkrHPc0oXCffhcMPETz2T2zGJRrnFWbfEl/hC8KS8yjqn6p/4jTLFBq3jNbbQBYuPvt0Sf9M8yp15/AxVuveCcP5E7WdDh54lNJRWDFY5kpkPOzzPSf5ll7YQObUJiYWnQPkeogsuBl1XJ6AQQM1msmKEgTvGKGVGSmkGCWS5H2VPhc6ydaJZntDcnXslBobbH5alEzWU5T+0HOF4Z48SfElLSNvvH3hRA5VYvgwyc8h5FHoX7TJUhBPiCteOxOZ58bkHTvodaFMm9rp/aaKYLH+7j/lca9pq6LzxFpjaWOFMuWa+VAY+2H3vr3AKO32di6crgLTnjNLuSapYWRyOqRxxreedz+0dbHzW1pa50jLTNxeIQYzyNz3iF/BhxiPeuiyBSy45xCuxsvoIY3b4VCG6IBzCWLJ9BNJo2rEWNZzuoCs7FEWPkoY3JWaRNM2UEJj3XbBUoKxSzjuxcCHmAnrEvfEv+VSNkJKxeXkGxh3pGtF+YYbfWK+jeZDdfQojPFGgNq/U5bEOK/oQMKSHh0Rr/6EGsQGpDRzYHWfYCGOwUa1+DX+UB2BDZ+kvTfkt9It6nHeoWQwP0TrQNK02yiL6SmaST/GMshjBerkxMFNbGlrRlG8+eZioLhm3XAqY416BL+fNbV8uKQmtMtegSr2Kq5kjtk68PxWrsiicsZuLRew+M5Brm067h7MSXnnmHGKlfyF1d6/9gZOsZQNcbU650d+iJVMQq+St+pEm/8CxpgmeQHNNAZOYM8mpIESySYRHDJJ/d0WQjmVatOF/uYf3x/QfaJzQ1RF+dCiTQRhko8rGGpMqdFShVEu9ZmT0ba9SCrVNoEjybTbB5nsbSapbs4gEAFWuAFpHgw03+OllIiHA3dYAAkjHwgOxYGwE5Ufa9io+ajT1a5aWVscVSKvt42tR2ah6JK7NrZQm23MnqDUQn0Tes1/BjLIIm/Oq/zQjGilX5YdS2LpBb9sWpnq1YP9XfHSxstf/UICzY5on7bbd+j5dvqW1W/Hpl6vO3OFKFEP++ManNBbp3mpB4y7j4SryxMvSdVteD7ZZf15LcSn5GdpBZ9VKqvFWpEZTOCOTg7lcahcc4Oj+v4IPUhf0p+uU9f9bsKGrv+Av6md6/8tZG0Wz4skaOgvvVxqD3NtyMbhteQd9eoFHQnI7mf9JwSd40AsYnWziQuT6CutYzcEjboq+1OW6FAn7Ulrvx4+f08NszbF1xPGdBch3TG+bgMUy9PVMbNRE2LpmTPVC7jv2AqKoAMjVj3tUNONU+w8aZHr1vyGxMWHms3LmNCn5XVeUxPshVTo2uDigX+I01N5G+4J6Ero5XN46KN6YbGjAaxu6PAsIfHmf2DoJpJCWS/qIGff6E4bIbrlOv6AWleguFl0xl9400oM1wRAmYv3lTlr2zLMDdQF6Xqpz+CQaAGzUgENKnKxVFt5TlW5+aE8zWQflkOsWJpaG/MJg4AwQme31hYabBOUb/E0otDzu4qgTbQW5wchMBwsckwsZ3ZBk2VxteI8nS1T9S354icD6g5RLXUuRBBd/m7No/358Awcay72pDNE62bSjQSS1rguKkiPMHeIT8MzUsqiLNODNbP+wIso0UPkL1KkE1Qs0m0iIJigF9YSkLlpNolhAzLV8IYFL558acFnymRa3cISCjp9xymXJ7v5sbSJxuNkz3zNUyAJ3h2uYf17g15pLGQTIAkn+IX2d+BqUS4ZOQaPWprpNulB7mrtrhvsATedsj4ojCEjd6fuATTGep0fkM5GmIfle5G92p2KeuE02tsipiVxSP4Sh9eBjMNcsXPUHNTKT3njIEPG5NKkORa3l5HmL68QQKZLH4X9KJQvf1qVAU51+zT5obL/fhoZE55vUuPApw7UORRhD4EqGnlYR2ZAAXeDY79Hdkue05S0DAJ3tp31BLQntvFdIuxGEhpqaGk7Zz2YhrF5LlOlBt7wxmYrdk4eXDQfKtSCYhWKentuCGlVmjPoY/dUuQm5oM4YtNxt865kAs1RnRwwoyMcONPDNnaUmypqUSKqUiVnYTGfjbNedvkXDbtQiTkwlUoEM37m8vQn0eYC6vyn5GyS546HELZbcMXmfccoPUvOxUj5cmqL/Wul1l087AtvVujODFfnLVD/osMZSoFnvnGxThF8p9EYKQ3k1QyTqSgg2eeQ8Zoo5N5jbgFxqNKggaynPCDt2BpKnaxe9f+0LwbZtJQtffgZWfNBf6Wc3FVlQn34OEMTF2eWewbXda5zGmEImMA4KvXZrgQNHqqJXr2KRMH7uQZC3OMC9rDiN8kscHcd764qruIcZsXJ7fFA4k+PrZQY5wB5Pi4KGpDRdHJgIZQL2qF7Ve7yp0aQmLyeXatQgM3F6J/h8w2o04N/IADbFZzawbTM4F/JMm2CCKWykDq38TQ6NBmV+1Xcxn+BFbob+u9Fzewk+knGKAO8rQdb/bfGuZ6wAna8g96/2BQbQ82KnV3GU1snGNuW0bT+tFms+kwbO61rQnULtl2qkgPPwRY9vRTAVTDIPKN/tr8E4XzD8WFPd+DjRaKR4NNW8wv0uX9YJwnt6RrCvsZyVKa3fRjt2gyjRKZ4u+lVu6nEIrES/mH6pBt1dZ2OsZ+2FPDMBCkFksCJSiR5sEuo1B4LcdOzB7ZxFgJN3bcm0BpKmIhbRQ30LdU+IowC2zBKyon3/xkpI/vgXQkM0nPV13u/+IQ/DZ6l+myQVj7ovGESjFu4FnaNZADkdshJiWgOrbLT9ucctE2Zr6immeQIiKe0y4RN5UdrSoe/cPS+nDKQ3br/RZA40boEnpHpMBfAFHcpKTI5nwNfjMNV1SAAYbc5kXyOwdDOZRBUC8vJstJ57os80FAOOTXM3UtpO+HZa02xnKX0jwGiaDD4YExOUA+5Y6WiKjpA1N3+2tUrnWdLYXqRprHJJMDwLlurYHMCYg3s8DqZ+XZIFIxA23Heqq+4zxWf1G2xp1nsMievigdzLROMJV/Pw17+75JjwKlQbOSTa208E07FEIfhZfkp3Ur1KID40vKYDfO/Fa32lb9AKAhJ6hr3OQIp8UbViIRObXBL/P4q6msXomV5wW/bZqtBku8H1/ZlNNm0WfTdO5FUmPxpYO7j7nd5lJsSH8PabZcq5oprbHlFpExdYepXBvUGplDnuWUiVxa4B06raD7gHMKzE3uVItnX6ixDn4qrjxkxSBtrzDYOFBr6eR0qZsAMdK85j7Sa+TrdkcBg8ytpBuRcskA7EcnHv5NfcSc0zS24ycf7bvUm2nkBLB/JRcXq57glDk68r7WX0eoL5mXz7yW9+CsQDyak7fK/VEVrnErcxEkLRUbi6fFr/RTpwVHsfcw/KXxOh4KAIx0+NR4SCs+OvPFPFnyvOeRdz1Xq92iuNC8L+KrpVFvj3FuDzY/gLqYOkdEOMYUZy7/LcDShYipEnAdiYkiNjUuo3p5uXwXABLUcR4Yq7u86Yam0Id/mMV+GKboesie0n5iACPG1qO2JehyBprD3UmJ3ue8xArP6XmDsNTccljlEX54LK5vpqFaOzu3pOU9jWVqshe18rgnlwqkVSTcyNw52FIcn8k8LxOUocIsZ3aCQ+7zBADOezW6yim92TaGipUROJQn693fmbDfRCoycllILz50wlRocnV4g/0ZtN4yU5Juxjpxky9RA2ZRlubqp+XaxHbU/kF/KhxQZ94pOgox5HXR9iaM8d67Eawm1i1gOpyd7/HSwr9oy5bif/BAsBFHzWwMlL8coAYjXOfo1Z4UhOXea+RMNfOMD6oKYnkpFYbE/HJ15QsEvisL5RTxut9SoKRhLTNF+QaLV9Cy55ejF4/L8j1T01U6VJRG0zdhBMYWmSaKKCInFjB+4/Ugn+MGVpztDyNKoFKog2l8DyBEMz7743daYoZWqtaUCuncq3JV3xX5CMtmuQONuZJVH2LEd8PU+7VGX+y6vmwUNzLvMqezeMrrke3C4R33VFqCOiMTS5tb+OHwO/n+pzeurHF1ji4TsvLKbNwTU1cf37Tsj6PzFEaJ66Ct1X+GH7u6Zqnn7LZivbg4VV8U2zD8z7rR86Ln/csRzzugAkcHcvLYM7v6MMvyaZDi/buDN5BC1bvUORb9+GRM846UIF+nLXMMs+F0jDBF4t22NhhdbTYCz1HK5A0RrKyVzhEwH6nCcKaqm3gUM4YG7LOnK9OigG4FgMvGls3aAIKG/Qd443LK7e8Qw56qgT72fCj1sDcf6Anx0ZwfSI0FaSbl5W7qvcSdlwQRV3/ONXCNhykimkoMmZYLOE2eyD40BPMkVkhmzSJQwQrv5YEShr4ULZZ3BLUX2DcrZyAIAdUpVdRo7JBHq9zj8+FDJR4hp+xXSinO5zOdGp12tHGumsDWEzNpQPOoSreXlgQPMmfNBN6mGY/6SAknt0tOLHmNCkuZJn02m5lb7IHJ8oNtt5X/uNJFukspTZtRF3R/n3uPnZn7NFhaKgzEtLUyiY4rqOQJ9q18VcCCtcbl/wZGD31zrD2YPXKIygUb3d6jbPqRhjlOzed07JJ5z6OLdEKz6U+LMzI1ILGQUw5YwMt6ppbVaIBUfDYaxwTNJPJUn7dvIMiqs14SdN9ipm/VeoIZ96TbT9c1vcQjRgy0n6eTY9vvPZVnaW4b8HIgWpPQLESe++EfrtPHP4EQ/aPi4OWusJTunpzS717Gzq73cNPXB2nWrp2a9mLgBvnEvnRWDpUuJ0eYJH8VJTyY6FAVzxok4cisduaA3AXSmOo6Dh+sAMg81k9imO63hnTATpCAqlxWN7ZUpExpAP7qMxIaRgeQhrOx58gkYhprcOjTUvGeo/k0l581l8Lz2c86Aif9F5EJD3Qe+El3XP0cbCesQ3IgTgYALurXlTzZvC6TREZwW+nH2nsZGLWi25DBdTfBAxBJympdlDmPXbxK5V/Ib2VBZKww8U1aj/OuRyjAZuRhLIDDoWXP0Are1sYieg3e3NDmXvg5xPXdlJga9T0t7NdCy5v7a5z1qZdQMBNJUawZ8sA2ive5cWwmKk7pqRAVxc3mtoD7tf30BbnL/H1RJAT055nIdhMHIsHLpya6W2urOcxdxXZ7/w9c20PKV3he4Phc3S/OvFz0NeOdOmMDVM/wtgXTwD3AJrvHj3Cmmg6I5AYdqGD1+6Qe6uoVQpaZuJDTDzn0QNtR9YlNl+Zrp0plG4lC1Mi+/rmzdDTzuIibnmbGz28kxIZWjrkdFu/uhv6Elff/aE/3uTXmBxoQ9i2vEu5r+os+22ufLq+Xv4BNrutEEgbSH9Bz6rmKgGtSq4CGAm81vTw6/B9qDgqrmJXJnBOoATIGpleEzF+ff1xttRdJSf0LHknW35VSn6e8ens7jBnd2T4FSs0hbNhmelfivUc9PAS0hRZIuJCZQVaqsaCOOGN3LQmSxFP1w00OPRpzF7RHWl19RG4eglbZNBY9DTQZSVag6Li7U+eOtPe2lDFVR7IlWGBVCoUpMJxmM5yvLLfx5XlAVs9eAhWdq5OBCPktDLmlNVn6xqmJloMvUaxWV0QG48Txvcja2FjFGfkLFY7PXsNFt+8O3RPuGGMDTf/g5tfHJtIUfGXlYPUbTW5UNt5NtSVU48LRsGKyOPoZUJ4hbqcOUmzGVU8wgNnXpNt8Hdmz8fsGNgT/fgr0lkx3lMzG9mJ1r94e/NJdVbzaUSJbjdPxa/pOxC13BM5OKFgJbDpXEyfJxk8v0+oNK18ecJt0e1Tv/7oankZ047w9HUKup5XY+qjyF7N0oqRgW77aiMUujdaiodOnpqnpakovv2JKgfs0De5NM5aRghZtKEpQeiafAk3Lmii1rTU+SVrLogt4EOrBcIlmmqu6aORGTK17ReX1GUKq0EoWb4jWpgCRNb/gHnqxkBpvUfoV2Tn27LB1kfwSmla0Jciz3Z7LY+OAsIPoJRlrnD4UB239AmJKrXFFwCfHpgS/dLawS3Lyuy2qJtzY+2XEWWbBbmbGOPc8B11S+QpExzEoOI6nAjNNH7b9UWHpYqpeGUsvrEG6LVeQPIpSyM8zEym+f6RillHUSPvpEe/Y4pXqYwq1otjSvvK5lQ0euvN0dk5sPHXewJ3+q7aZ2q288G7EwjkNL/cBjy6NETbV8DYvE2AUpp4RhDilm9BYuuHmmCtp5P3FaRknmRuREcua4lVCjllz6ltEVZkmRcgsjJNokbFcflkfVNh0qsyAEl6Op3JAcFZ5gKvn8vS7byfCr5vfNOlPsdTNevWMZHY99DJYeH3H+n0CNErCHQ1lQlUanVHd9qX9UTaknaYUJEtckaZF5AHW4JJFeh6UtGyiBbdG68/SPlFvO+eH8sNUfN0ky/Ujtk3+35iyQxxU63LzuT9tCnfC2/9gVIVOS0zBjVABvlLQxdDZ28TEzXaSeuKWV5+fKs71vrcYD61DYO2X5H7iZtT0my1zY7D5ox4w8N89xQLcoajlSLqoa+IQFMbj4oxVgk2VOJhTFnCb3WpWv+A0csYtJXO8Mq8FEpvZiP+wkPeFAYZoxAc/QUqAT5h3zHKVuYS4RyuPNYelcPGONV+QmJclUyb7+KTp3l+JYs8i56YCmhxudLAjGdxR4HoE1oH7PW4vseWwLdqvLj0cgQJPCJ0RmIhX+sc/0aaef1S97MbwV3NbmP1AT3nYqRyBESR5e3zB4490sPs+/yBz/xIhgL1DpOl3B2CoXYsq8ccgHK6oWBdX4eJMB/fsvCxA4tFbKz1TmwGf4zoVzSYhbwrH724siQI9ryI5ICgTwweSkd28x75LJeAPDK18iqz0cZfkw+J+R+M4pPzO3/qtQn2WI2loZVB+/lP67nXyPQIUClm4qQnrWjHEMguXPhoRhggkWD/dFR7s3qnZX+PT50tlFZBqCWTBjedsvSDiZcPMi2eXvatpK5tHjxAf1TVnuW9d1sjtnfPJ4q3fmJo3Q5sMzKs2uq6VC7Q8JJZbMipRK7ir0G1d2g5OE4vlK4FCk9I08w/9ItYTf5mGPdBDqht9lrR+kL0gFvdt4/akXEQrwPDeFaPycDSMMxt5YTPEh1iqh6OHbyQyNo/Pu3q37dR4r/yF5Pp2FqiYzKpCThnQYYzl8xbaNO2lgyW1r/WzuK6hwMcSC7fVvXgvSVekz/DmhfWSYaIw6I7khg6+/RE5E5R8Pf8YjKL11qfj1uqT11rwtZaqYk5ucFAHOAV6meAJTEwxAWVLDpNeZkFvhGQjFHdAs5Rbyup0bbaw8R7L00sTaDy2Ll+mHXqCi3cGAPnxNCVrpA4+dLt46By3kcmZgOlBKW4cEVi8iuiwzL0gPTxzXktEBVDmCnqK+llQCbzfnq8S/U125qKOMvdYL4LvLWySVE5wR82/yP+VRCU+tc9tKrXHWEsWrKQ9GCpeByC2crwCuJs/WULl85M2Biob+K4mKhaL3n8/OR/9FpQ+HBjYpvsPTWoHbj6tv+s7G/YXdCEostKbtHy4g47KzjhBUENcSUW/FHP4Btb3vV6t0mhp6KaiANpgXm1D5G8z8b6UfLqSSW6S3cD7yzWtqOqoZoPYqhOJpeC7CtwA8cnDtdGVGK3Jv08Se95DKhBdE2B+DpJbv92l7L3YbsV0fN4JRn5pl9kr9pGZJxGUx9t1s8I453KT/OY88i2je2dx3arTZUg/fFMaDhVDIRlaDDynWcjQVmC/DARa2Ri0M4XWqH4fBq4v09l/hJKMAjUVhSUhAt2VMyW/J6GVnL/7qh9hjQNQupGUvHKfGoqivyLaROnovCuEdtoDqrNU7obB1fPGm+Di/eMwUSQKudQmlhTKRcrHB46WlKpdFinmDQxbSPazuvneVHGSA85NDVK6Y9dAkX63e/vEOVPRAkcqeW6nT1IdJu1HXQ/skASqpNiA+0FUk0/Oe3rTPOw9hud0SXrHbZW4oe1pTKMEaGiJfsI5Bo25fAaCRIpB93EhM6HJzFPcbGUyGITuM20QHSVTYHV8EC4fg8CjseWAZibjBh7k2CbNuuYbr3dOO1tdC9wPny0i1jONJh4TaxQ7DCBvwo1fM3+wHedvSg4Ik9IRvQVXalOpQEpM54/AjOx1GMmwPpvGWclvKUk0epJ0DkOA2qlXGAOl7RKZewL7QCUoIXKCGfcC0nm9WQeNiMIaSkj5vrnqIKFWyYcKXziGk3oAF5e2HDFw5Zn0Zv2ws1chpR+7VAk5yOIrkI2IVtUgkIU5bJaiHfda/8ZEMmSkAuKDDfbjdbAKIO7E+2yDW4Rn/u1ErOG2LPruKIKSBrfH+otzU2eeoGXLiVU/qTEQQbVytsOTZGfQysPp1gSqOFZ3HmX4p8OaGg0KyiXT+sfs1t2YGgXPNOhCMtCtQtfMafetO6PwP32XMButtSVFbpdFgeSz0QEEQO9JdNjd9HDsraSTBKB2ZVWCPBIGpDJ6ZlIXEfvxf1Dfu7cc7GGn+xJczVSTsQv+ShjoWjOPP9w2byJBLBQkvrJDQ+S8mb/edOIcTinOaI7zmCN6Jh8I4SZ6C9tCNBN6e15H7iG16Eha/BkchF97ZHsqBwqBHbt3BVAaNjEYvZsySTSoNrz2WrRwjAnnzabA6ssIQImTTX3ow7heVic+CDAF9Rn3/eIhf4P9YBQlKn138FLF7GNvyKp8WpEp6STzoRCtbq5Zvs20+YA7OjixtPhaE3/7iixvlgDAjcILUgtUC3KS3+DTHljOWtbTNVxrzD+32gFo0LJ+50My/HD9sPeR8dizoRbbzxapi4tPzFwhbqwoXUSUw5CNhPF65JD004jlVonUdlk7fhR72tNGoM0JQDw4phSkoaSlOuJgsAos1N2M/w5ufzB1GmWbBzyOH57K6L6cFyWZJH0BL5wAkSlqbZjLoBRproztdcvU11dfshF2pw9zqGXGZ3Hnuf+Mhnt0r1sYSWG7i5B/bgoa2TV5gO6CJLmOUwRei4M2T45TOdPZO41/iFt6VrpyB+gGS68R02kYZsjsTsiKkVdXpn2eg+YkqkrvU9hoHU3SSOREsd+tQN6wiro5ptw/BxEUZVnUMgu6InO9d5ejfvaXep2N/hpWSEuqw53YLxEgEGMVX+SmoiatazgoFFG1gFfi1Il6FBA1uK0ZM/qyiAf/OMHnNypqlLuknzJ0h6qKXSyIMsGO05Ku6PJ2rFFmiWFAso8g8xjU+fHTe0EusIdl4eLWiLHUJeKGHAWwRIcWl5v/vuQy/5Mrj0dqIWYNJ1cNzzwZJweSA6CgXy1XxvgSzPHKuwBzYrJdZqgTobCBute2gT2dvzxA2+JPDxt8hWuIAigXjI82fIqNsERvWQ4IbNriELt2J5u/BqCJ9qzEy5uwpinDbpZazKoxMHNFhTgsxdmDCpBIZNj2+CfVJEBcuEm9Q6uLl9Mg14Zgd/CJAP48aXhAfSDfhdoHRt38C62Gf/T17MjhzqeSO0brJZGgYJ//yc9q935yMBvp4vTIcSu2akK4W1/KbHsEIJKWtN8ECDAnDwtrL/KOY6NgBqLaf30iqpg8u5ykAiRydgF2xk7j9iq9XTcsTfwjsfH/ocB9X0SwCOb0NGsuN83oLAAE38PQlGQeQaGcNe5RPSk+ibOyha7kIXYyP0ZO3kdA69tW/WRMXz1gEUhmobZ0ZBb/qWe7YS7ElAptCiWcr9JBVJGhinzRpBv1sKH/mJ0o0ds45pZKV7GuZsQCluoLTnWrOaOfghOOyudeIb9PddXqQMkRslK/RJA8++OlTf+TfNIhkQHyayEFdz6z3Kycx+2pRPi8b0GgfLQS/neg2qzJzWmPjwAp3hdcOSkHPVasYLmg3+Yuu3AaxKFiHMW/uGqPOnLdnNIkBwbzOAUZE2Uob4G/tptL17IfcPRmFISO9Wucl4ttHox8z/6F5rRoNlNKiYw8gVun+ZIzNmTMYpcHHx2IiM3wPuX4R1HbV7w9lo7LDDjzeMg0QD3UymQk9P+uGaQhr7NANMBk2XqVfAqpWlFoUN67+o+N99kit7scou5OS2+C8e/wc4bqqqumm6W+2eejUswkUp2MlpFzhQgwRJ1rWtWvPDiG8uC/VblXR795L92d4Pwwa1NxS8VXp2a1vgids5rFHXsPs7kPC+ZgPF/bClP23wMzlQ1m7e52q2GfWNPzX3Ai8YRHJNqvA2NfDdWeDrB2wTdS12DYnUVP3yg+HmIRVKofacR36hhxCritHrg5jz9UDEWg2DuxpxXgqhs207D1uOIwxzFZwCKw8V2GTyhfHiJx792r+aQ+3/6DkN6BrVIiIrgX5tiCvw5Akr8qPe8YtQL+NvnJ3c1Pe3N/w4VE1YZmvLDra0rdunYuZhd1DDMOTEzyLjxpYzivj0nXsQGvQOnuNXciXsWw80Tk34cJiOu1+J2ZL15LQFPPTKdjKnbC2joWNCN7v6JAngyIDKPUOlKofa/oWikTkLhhjCuNs+4vBfxO4F70qw2St+tbO3cF/jvH/pTFVFAAa/ueIW751sHLfHurmRWQ3/aLVfE1v1m74sh/ym4vOKlTFTqN5pbpvFAPL1O1hlLmqXzyvenRKKk2xjHf8rQ8W11wfgtM+HpAwBjM0t1WFX6RpzweCPqOWsLOgDjde64Hnr6tJeBBCWJ36cSMns9Nn36ZI1NFtfv3UqaHlOxm9lhL9TjZXzo4XvhpakJ7IB97RWxPwPILOh5yRYHgoM1nZtkQits7n/uJ4/IaMcnYA5xuxHlGXPLw2x85/GxdznQXsCctwQbIaf2cIWe9x2oznxZEGbhm42sXS8dNe1OHPfkf6rA7RN4VrSbo1dqaHdbPqJ1v8AXelzBH2rmiO4GNKF8uaDVIj01qvZWzjkJosOKbaC8w0x8x3IygFPkJToaX+YaosdL2k8Tk8zTn2QXNdblAMDCneNEhwpw4lo9IhkdfUJhRI9NZCgc+LCxoLZU3iXg55L2q4t3iQDad0rJVGlKtBFhZTa6fibbrfTch4FQXJBtDWZIgLeOVJ+7Jnew3RmOvLkmjYxLDBlhbsNmmrXu3OgnIjnyb4C/s8OfS7ey1wkb6XgpWinATY1Y1wramjd/NkLo3kNGLIPmVfCzWRY0qzoTOFHq9Wlq+4r2HIc31UzONAWVhcpFqzQiTneSzyLFstmMR99QqqjEzYsgy0LeNuPFbUe0xQpYoWcaASmkDqJ2aa2xGoWwCPA0C/X/hSGsYRevkmU4Xwjst72nWNOoEl9rQ+WV1oVNE+7Q5DSs5KueHyUt2zkZQjOv+RZE0fU9QK/eiKDtQ4T/GCrEgdU7CMXxDI1o7GPdtI7lkNQvc7rpSOc69nbY0dN4vUX6w3PLzvztTemdjtTB7LiidEK8XcpXPTzlHR0llRK8YUfNL2MqwzPLRVJZz0IZb5AH2X+5iFiDiX+2oGqaXoZxu8P8fzHQGfylKwlptjKD9EG22amfLoNKYre2kp26PLqWsmOw126c7sC0Lq3mKt3lJCUlIYM/dDvt802rE1iQLh5bLNX5qxAfAKttINvaTFjVS+BDncEk57i1sQ7UptMXT5eLVZPLiK7gek+BC9AfwZoFEA+XKCkGeyh6SUL8YgOH23J2cuLOadDi5BMZmIHUPYuHsf/FvkcKQXt/7/oqsqTnNWbQZzbmuV23cZO9/pftfHmTz3zuS3isAf/2KYaU6fHb8JwfZHEFwtomPgaV5jh+ZL4M+lsHKJ2zvDK7ydgwE/M1SEvn2mDj/sTUrj1timX9vW52VoGC4OP9jmiZwhazNBwx7v3fabcem7XJn62a/k1nYJbB1FGeZekaNutRwvECTsKQKOPnfmgekn2xuy1rINZbdoTlAyozqh9BgRZoOQ8KfO2ErMkmVoS9uL/u94EQCIO4fWKWERLacTxWyZ+6AKt2nLrN/tnBZ8MornDf73b1pbSzEj/A7FOAC2aX1K52MdoTyRpe/w3jf0WGkTdSn6fLBzAtx3jf2sW5Xd3KxYYwW1yWeNdioCSBlW6u5rdKUuT3MxLe/g6rN41S9/MIS7sm4NjAxy2L0S4Rk/QZyyh25prPmSnNs8+h2P2UlrKORXni3i44pjfhjhv6wJ/Snr+nmy9vcXYfwXvHliuGD/k1JWazd/30xlh6yZPWTrhivkKLPg9PPEiNuglngbY3PSP+cPMGgak3qpKlv397f1LiAH3LzGONBT2Y6reGjmduje4Ar2EL57HsOvyrxfdnk8uFu5g7cwsdo6qHDJ+pwKtgqMY+DxPmDIJNAgZIgKrXielDI0uokYP7QkrBly/o6jXBDLkwn8Q2oghbX7hv00uXxDedmjZM7sBA/e3+qsberqZYCI+PConvcjofnH6BnF11WDmW9BsSy/FhCZ5fPrHss5sShrmyR37GVQhAFXatouAGBC+cCC+W8EODVdEWGXFVO6ezdKrA6AZrZt518c5fxteB1Aa6tTlAiiy5/39vsMqvYN8Qy6BMfKfKDBC7Y/xpmKdemy96T8np4+vHsSxlK4b4lCvGPyunZlLPK20wwHfv9mnxvD1aac4/oa0nTSLKyhWm5WP7vbbpiQzlLaHLsgvaDjCaLT3u7MV3Of/Jmd5fuR1s1671qiN3B18DeK0VvLB4B5A9+syqA1lVRBrcUihZF62MPNsAzJ21bWUtmqq58HBo2Jt+jYG9rYa/yFzxW3GLRcCK3eq0WZsPB6h8tV1XElJghX7JKA/XVvP+Tpc64tfy5fw7989pINY+i7mHezEwimamrNW4+Yn/FaQZ+7KoiK9MFW58rWT9q1aH5b2LHAxKKrY657SloEI261766Z7f2nk46Ih1u5zoqkBzQZNqK7qfsdBtPvO1Fw/MSud7On6dPxBbdYKscrgzkRvCRVZn4KNkpNMX6Pi0+HM+it0X+jeUvMyzPYGM8MrDPGX+Wg2GVAFsRMr0mh6G2l4zDIlbZTpA5YM/L0lKzmHX7yj43xiQEKXrfVxdgfc2ZV4cpKNTwnZBvNzU+/Mw9OsRKOtE6Vr4Txu1xZwbZmGexjif5/rLdnxhLPFUK++d8Gr3rkqoYeXwGajHGXQFMh394P6mnAstOTzdkloH/zV31RN8IugQ0pfB+wLTms7clqg06MuIHpPIA02HzJAWtl4Gnut5hChnRF6cXVxO9z52r6laddL1SO7oBY4DrC7MVHj67L2E7JGgyu6sW90Mczjnp/mcm2u6JrH5tZweCejkvtqJ0+bAwocSiZGt0foV4TyAWTw565itMow9dVjJsGhwWEGemYEyuWe46bEG20EBkq5qOwY";
+const PBKDF2_ITERATIONS = 200000;
+let QUESTIONS = null; // populated after successful decryption
+
+
+// =================== STATE ===================
+const MT_NOW = () => new Date();
+const A1_OPEN = new Date(ATTEMPT1_OPEN_ISO);
+const A1_DL = new Date(ATTEMPT1_DEADLINE_ISO);
+const A2_DL = new Date(ATTEMPT2_DEADLINE_ISO);
+
+function storageKey(name, email) {
+  const id = (name + "|" + email).toLowerCase().replace(/\s+/g, "_");
+  return STORAGE_PREFIX + btoa(unescape(encodeURIComponent(id))).replace(/[^a-zA-Z0-9]/g, "");
+}
+function loadState(key) { try { return JSON.parse(localStorage.getItem(key) || "null"); } catch { return null; } }
+function saveState(key, state) { localStorage.setItem(key, JSON.stringify(state)); }
+
+// =================== LOCKDOWN: violations + fullscreen + tab detection ===================
+const violations = [];
+let quizActive = false;
+
+function logViolation(type, detail) {
+  if (!quizActive) return;
+  const entry = { type, detail: detail || "", at: new Date().toISOString() };
+  violations.push(entry);
+  const box = document.getElementById("violationsBox");
+  if (box) {
+    box.classList.remove("hidden");
+    box.innerHTML = `<strong>⚠ Violations logged: ${violations.length}</strong> — These have been recorded and will be emailed to your instructor. Return to fullscreen and do not switch tabs.`;
+  }
+  // Save to current state
+  if (currentKey) {
+    const s = loadState(currentKey) || {};
+    s.violations = violations;
+    saveState(currentKey, s);
+  }
+}
+
+let tabHiddenAt = null;
+document.addEventListener("visibilitychange", () => {
+  if (!quizActive) return;
+  if (document.hidden) {
+    tabHiddenAt = Date.now();
+    logViolation("tab_switch_start", "User switched away from quiz tab/window");
+  } else if (tabHiddenAt) {
+    const durationSec = Math.round((Date.now() - tabHiddenAt) / 1000);
+    const suspicious = durationSec >= 15;
+    logViolation(
+      suspicious ? "tab_switch_long" : "tab_switch_short",
+      `Returned after ${durationSec}s away${suspicious ? " — LONG enough to use external tool (ChatGPT, Excel, etc.)" : ""}`
+    );
+    tabHiddenAt = null;
+  }
+});
+
+document.addEventListener("fullscreenchange", () => {
+  if (quizActive && !document.fullscreenElement) {
+    logViolation("fullscreen_exit", "User exited fullscreen");
+    // try to re-enter after brief pause
+    setTimeout(() => { if (quizActive && !document.fullscreenElement) requestFullscreen(); }, 500);
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  // Disable common exfiltration / cheat shortcuts during quiz
+  if (!quizActive) return;
+  const k = e.key.toLowerCase();
+  if ((e.ctrlKey || e.metaKey) && (k === "c" || k === "v" || k === "x" || k === "p" || k === "s" || k === "u")) {
+    e.preventDefault();
+    logViolation("blocked_shortcut", "Ctrl/Cmd+" + k.toUpperCase());
+  }
+  if (k === "f12") { e.preventDefault(); logViolation("blocked_shortcut", "F12"); }
+});
+
+function requestFullscreen() {
+  const el = document.documentElement;
+  if (el.requestFullscreen) el.requestFullscreen().catch(()=>{});
+  else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+  else if (el.msRequestFullscreen) el.msRequestFullscreen();
+}
+
+// Prevent back-button resubmit: push state + block pop
+window.addEventListener("beforeunload", (e) => {
+  if (quizActive) {
+    e.preventDefault();
+    e.returnValue = "You are in the middle of a quiz. Leaving now will NOT save your answers.";
+    return e.returnValue;
+  }
+});
+history.pushState(null, "", location.href);
+window.addEventListener("popstate", () => {
+  if (quizActive) {
+    history.pushState(null, "", location.href);
+    logViolation("back_button", "Back button pressed during quiz");
+    alert("You cannot navigate back during the quiz. Your answers are not yet submitted.");
+  }
+});
+
+// =================== UI ===================
+function updateDeadlineBar() {
+  const bar = document.getElementById("deadlineBar");
+  const now = MT_NOW();
+  if (now > A2_DL) {
+    bar.textContent = "⛔ Quiz closed (deadline passed: 11:59 PM MT, April 16, 2026)";
+    bar.className = "deadline-ticker countdown-closed";
+  } else if (now > A1_DL) {
+    const hrs = Math.max(0, (A2_DL - now) / (1000*60*60));
+    bar.textContent = `⏰ Attempt 1 closed. Attempt 2 available — ${hrs.toFixed(1)} hours remaining until 11:59 PM MT.`;
+    bar.className = "deadline-ticker countdown-warn";
+  } else if (now >= A1_OPEN) {
+    const mins = Math.max(0, (A1_DL - now) / (1000*60));
+    bar.textContent = `✅ Attempt 1 open NOW — window closes for NEW starts at 1:20 PM MT in ${mins.toFixed(0)} min. Each student gets 80 min from when they begin.`;
+    bar.className = "deadline-ticker countdown-good";
+  } else {
+    const hrs = Math.max(0, (A1_OPEN - now) / (1000*60*60));
+    bar.textContent = `🔒 Attempt 1 opens at 12:00 PM MT on April 16, 2026 — ${hrs.toFixed(1)} hours from now.`;
+    bar.className = "deadline-ticker countdown-warn";
+  }
+}
+
+function renderQuiz(attempt, state) {
+  const form = document.getElementById("quizForm");
+  form.innerHTML = "";
+  const indices = attempt === 1 ? QUESTIONS.map((_, i) => i) : state.attempt1.wrong;
+
+  indices.forEach((qi, displayIdx) => {
+    const q = QUESTIONS[qi];
+    const card = document.createElement("div");
+    card.className = "q";
+    card.innerHTML = `
+      <div class="q-num">Question ${displayIdx + 1} of ${indices.length}  •  Chapter ${q.ch}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="choices">
+        ${q.choices.map((c, ci) => `
+          <label><input type="radio" name="q${qi}" value="${ci}" required> ${String.fromCharCode(65+ci)}. ${c}</label>
+        `).join("")}
+      </div>
+    `;
+    form.appendChild(card);
+  });
+
+  document.getElementById("attemptLabel").textContent = `Attempt ${attempt} of 2`;
+  if (attempt === 2) {
+    document.getElementById("attemptInstr").innerHTML =
+      `You are retaking <strong>${indices.length} question${indices.length!==1?"s":""}</strong> you got wrong on Attempt 1. Your final score will combine both attempts (50/50 weighted).`;
+  }
+}
+
+function renderResults(state) {
+  document.getElementById("landing").classList.add("hidden");
+  document.getElementById("quiz").classList.add("hidden");
+  document.getElementById("results").classList.remove("hidden");
+  quizActive = false;
+  document.getElementById("calcToggle").classList.remove("visible");
+  document.getElementById("calcPanel").classList.remove("open");
+  document.getElementById("timerBar").classList.remove("visible");
+  document.body.classList.remove("quiz-active");
+  if (timerHandle) { clearInterval(timerHandle); timerHandle = null; }
+  if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(()=>{});
+
+  const finalPct = state.finalPct;
+  const hero = document.getElementById("resultHero");
+  const passed = finalPct >= 80;
+  hero.className = "result-hero " + (passed ? "pass" : "fail");
+  hero.innerHTML = `
+    <div class="label">${passed ? "PASS" : "FAIL"}</div>
+    <div class="big">${finalPct.toFixed(1)}%</div>
+    <div class="muted">${state.finalLabel}</div>
+  `;
+
+  const review = document.getElementById("reviewBlock");
+  review.innerHTML = "";
+  const lastAnswers = state.attempt2 ? state.attempt2.answers : state.attempt1.answers;
+  const scope = state.attempt2 ? state.attempt1.wrong : QUESTIONS.map((_, i) => i);
+
+  scope.forEach((qi, idx) => {
+    const q = QUESTIONS[qi];
+    const ans = lastAnswers[qi];
+    const isCorrect = ans === q.a;
+    const card = document.createElement("div");
+    card.className = "q " + (isCorrect ? "correct" : "incorrect");
+    card.innerHTML = `
+      <div class="q-num">Question ${idx + 1}  •  Chapter ${q.ch}  •  ${isCorrect ? "✓ Correct" : "✗ Incorrect"}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="choices">
+        ${q.choices.map((c, ci) => {
+          let cls = "";
+          if (ci === q.a) cls = "correct-ans";
+          else if (ci === ans) cls = "wrong-ans";
+          return `<label class="${cls}">${String.fromCharCode(65+ci)}. ${c}</label>`;
+        }).join("")}
+      </div>
+      <div class="explanation"><strong>Why:</strong> ${q.exp}</div>
+    `;
+    review.appendChild(card);
+  });
+
+  const next = document.getElementById("nextStepBlock");
+  const now = MT_NOW();
+  const submitBtns = `
+    <div style="margin-top:16px; padding:16px; background:#fff8e1; border:2px solid var(--accent); border-radius:8px;">
+      <h3 style="color:var(--err); margin-top:0;">⚠ REQUIRED: Submit Your Results to Blackboard</h3>
+      <p style="font-size:14px; margin:6px 0;"><strong>You are NOT done until you complete these two steps:</strong></p>
+      <ol style="font-size:14px; padding-left:22px; margin:8px 0;">
+        <li><strong>Download the results file below.</strong> A JSON file will save to your Downloads folder.</li>
+        <li><strong>Upload the file to the "Test 2 Quiz Results" assignment on Blackboard.</strong> Do this immediately.</li>
+      </ol>
+      <div style="margin-top:14px; text-align:center;">
+        <button id="downloadBtn" style="background:var(--brand); color:white; font-size:16px; padding:14px 28px;">📥 Download My Results File (click to download)</button>
+      </div>
+      <p style="font-size:12px; color:var(--muted); margin-top:10px; text-align:center;">
+        The file name will be <code>FIN4329_Test2_[YourName]_[Score]pct.json</code>. Upload exactly as downloaded — do not open or edit it.<br>
+        <strong>FERPA note:</strong> Your score is never transmitted to any third-party service. Blackboard is UTEP's official grade system.
+      </p>
+    </div>`;
+
+  if (state.attempt2 || state.locked) {
+    next.innerHTML = `<h2>🔒 Quiz Complete — Locked</h2>
+      <p>You have used both attempts. The quiz is now <strong>permanently closed for your account</strong>. You cannot retake it.</p>
+      <p>Final score: <strong>${finalPct.toFixed(1)}% (${passed ? "PASS" : "FAIL"})</strong></p>
+      ${submitBtns}`;
+  } else if (state.attempt1.wrong.length === 0) {
+    next.innerHTML = `<h2>🔒 Perfect Score — Quiz Locked</h2>
+      <p>You got all 20 correct on Attempt 1. No second attempt needed. The quiz is <strong>permanently closed for your account</strong>.</p>
+      ${submitBtns}`;
+  } else if (now < A2_DL) {
+    const hrs = ((A2_DL - now) / (1000*60*60)).toFixed(1);
+    next.innerHTML = `
+      <h2>You have a second attempt</h2>
+      <p>You got <strong>${state.attempt1.wrong.length} question${state.attempt1.wrong.length!==1?"s":""} wrong</strong>. You can retake just those questions until 11:59 PM Mountain Time (${hrs} hours from now).</p>
+      <p><strong>Scoring:</strong> Attempt 1 correct = 1 point each. Attempt 2 correct = 0.5 points each. Retaking can only <em>improve</em> your score, never lower it. After you submit Attempt 2 your score is permanently locked.</p>
+      <button id="startA2Btn">Start Attempt 2 →</button>
+    `;
+    document.getElementById("startA2Btn").onclick = () => startAttempt(2);
+  } else {
+    next.innerHTML = `<h2>Deadline passed</h2><p>The Attempt 2 deadline has passed.</p>${submitBtns}`;
+  }
+
+  // Wire up download button
+  const dlBtn = document.getElementById("downloadBtn");
+  if (dlBtn) {
+    dlBtn.onclick = () => {
+      downloadResults(state);
+    };
+  }
+}
+
+function downloadResults(state) {
+  // Include a signature hash so instructor can detect tampering
+  const stateCopy = JSON.parse(JSON.stringify(state));
+  stateCopy._downloaded_at = new Date().toISOString();
+  const blob = new Blob([JSON.stringify(stateCopy, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `FIN4329_Test2_${state.name.replace(/\s+/g,"_")}_${state.finalPct.toFixed(0)}pct.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// =================== FLOW ===================
+let currentKey = null;
+let currentAttempt = null;
+
+
+// =================== DECRYPTION (Web Crypto API) ===================
+async function decryptQuestions(password) {
+  // Parse the base64 blob: salt(16) || iv(12) || ciphertext+tag
+  const blob = Uint8Array.from(atob(ENCRYPTED_QUESTIONS), c => c.charCodeAt(0));
+  const salt = blob.slice(0, 16);
+  const iv = blob.slice(16, 28);
+  const ciphertext = blob.slice(28);
+
+  // Derive 256-bit key from password via PBKDF2-SHA256
+  const enc = new TextEncoder();
+  const baseKey = await crypto.subtle.importKey(
+    "raw", enc.encode(password), { name: "PBKDF2" }, false, ["deriveKey"]
+  );
+  const key = await crypto.subtle.deriveKey(
+    { name: "PBKDF2", salt, iterations: PBKDF2_ITERATIONS, hash: "SHA-256" },
+    baseKey,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["decrypt"]
+  );
+
+  // Decrypt (will throw if authentication tag is invalid = wrong password)
+  const plaintextBuf = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, ciphertext);
+  const text = new TextDecoder().decode(plaintextBuf);
+  return JSON.parse(text);
+}
+
+document.getElementById("agreeBox").addEventListener("change", (e) => {
+  document.getElementById("startBtn").disabled = !e.target.checked;
+});
+
+function startAttempt(attempt) {
+  currentAttempt = attempt;
+  let state = loadState(currentKey);
+
+  // Record startTime for Attempt 1 timer (once — never resets on resume)
+  if (attempt === 1) {
+    if (!state.attempt1_startTime) {
+      state.attempt1_startTime = Date.now();
+      saveState(currentKey, state);
+    }
+  }
+
+  document.getElementById("landing").classList.add("hidden");
+  document.getElementById("results").classList.add("hidden");
+  document.getElementById("quiz").classList.remove("hidden");
+  renderQuiz(attempt, state);
+  restoreAnswers(state); // auto-resume previous answers if any
+  window.scrollTo(0, 0);
+  quizActive = true;
+  requestFullscreen();
+  document.getElementById("calcToggle").classList.add("visible");
+  document.body.classList.add("quiz-active");
+
+  if (attempt === 1) {
+    document.getElementById("timerBar").classList.add("visible");
+    startTimer(state.attempt1_startTime);
+  }
+  wireAutoSave();
+}
+
+// =================== TIMER (Attempt 1 only) ===================
+let timerHandle = null;
+function startTimer(startTimeMs) {
+  const displayMs = ATTEMPT1_DISPLAY_MINUTES * 60 * 1000;   // 80 min — what student sees
+  const hardMs = ATTEMPT1_HARD_STOP_MINUTES * 60 * 1000;    // 85 min — actual auto-submit
+  function tick() {
+    const elapsed = Date.now() - startTimeMs;
+    const displayRemaining = displayMs - elapsed;
+    const hardRemaining = hardMs - elapsed;
+    const bar = document.getElementById("timerBar");
+
+    if (hardRemaining <= 0) {
+      // Silent hard stop at 85 min — auto-submit with current answers
+      bar.textContent = "⛔ QUIZ LOCKED — auto-submitted with your current answers.";
+      bar.className = "visible expired";
+      clearInterval(timerHandle);
+      autoSubmitAttempt1();
+      return;
+    }
+
+    if (displayRemaining <= 0) {
+      // Grace period (80-85 min elapsed). Student sees TIME UP; violation logging is OFF.
+      quizActive = false; // stop logging tab-switches / fullscreen exits so they can upload to BB
+      bar.textContent = "⛔ TIME'S UP — Click SUBMIT now, then download your results file and upload it to Blackboard.";
+      bar.className = "visible expired";
+      return;
+    }
+
+    // Normal countdown (0-80 min elapsed)
+    const mins = Math.floor(displayRemaining / 60000);
+    const secs = Math.floor((displayRemaining % 60000) / 1000);
+    const mmss = `${mins}:${secs.toString().padStart(2,"0")}`;
+    if (displayRemaining <= 5 * 60 * 1000) {
+      bar.textContent = `⚠ 5-MINUTE WARNING — Time remaining: ${mmss}. Finish and click Submit.`;
+      bar.className = "visible warning";
+    } else {
+      bar.textContent = `⏱ Attempt 1 — Time remaining: ${mmss}`;
+      bar.className = "visible";
+    }
+  }
+  tick();
+  timerHandle = setInterval(tick, 1000);
+}
+
+// =================== AUTO-SAVE & RESUME ===================
+function wireAutoSave() {
+  const form = document.getElementById("quizForm");
+  if (!form) return;
+  form.addEventListener("change", (e) => {
+    if (e.target.type !== "radio") return;
+    const state = loadState(currentKey) || {};
+    const key = currentAttempt === 1 ? "attempt1_partial" : "attempt2_partial";
+    const partial = state[key] || {};
+    partial[e.target.name] = parseInt(e.target.value, 10);
+    state[key] = partial;
+    saveState(currentKey, state);
+  });
+}
+function restoreAnswers(state) {
+  const key = currentAttempt === 1 ? "attempt1_partial" : "attempt2_partial";
+  const partial = state[key];
+  if (!partial) return;
+  for (const [name, val] of Object.entries(partial)) {
+    const inp = document.querySelector(`input[name="${name}"][value="${val}"]`);
+    if (inp) inp.checked = true;
+  }
+}
+function autoSubmitAttempt1() {
+  // Called when 80-min timer expires. Submit whatever answers are currently selected.
+  // Unanswered questions count as wrong.
+  const form = document.getElementById("quizForm");
+  if (!form) return;
+  const state = loadState(currentKey);
+  if (!state || state.attempt1) return; // already submitted
+  const answers = {};
+  const wrong = [];
+  let correctCount = 0;
+  QUESTIONS.forEach((q, qi) => {
+    const sel = form.querySelector(`input[name="q${qi}"]:checked`);
+    const val = sel ? parseInt(sel.value, 10) : -1; // -1 = unanswered
+    answers[qi] = val;
+    if (val === q.a) correctCount++;
+    else wrong.push(qi);
+  });
+  const scorePct = (correctCount / QUESTIONS.length) * 100;
+  state.attempt1 = { answers, wrong, correctCount, total: QUESTIONS.length, scorePct,
+    timestamp: new Date().toISOString(), violations: violations.slice(), autoSubmitted: true };
+  if (wrong.length === 0) {
+    state.finalPct = 100;
+    state.finalLabel = "Attempt 1: 20/20 (auto-submitted at time expiry)";
+  } else {
+    state.finalPct = scorePct;
+    state.finalLabel = `Attempt 1 AUTO-SUBMITTED at timer expiry: ${correctCount}/20 (${scorePct.toFixed(1)}%) — second attempt still available until 11:59 PM MT`;
+  }
+  saveState(currentKey, state);
+  quizActive = false;
+  renderResults(state);
+}
+
+// =================== CALCULATOR ===================
+function calcAppend(s) {
+  const inp = document.getElementById("calcInput");
+  inp.value += s; inp.focus();
+  calcTryEval(false);
+}
+function calcClear() {
+  document.getElementById("calcInput").value = "";
+  document.getElementById("calcResult").textContent = "0";
+}
+function calcBackspace() {
+  const inp = document.getElementById("calcInput");
+  inp.value = inp.value.slice(0, -1);
+  calcTryEval(false);
+}
+function calcEval() { calcTryEval(true); }
+function calcTryEval(commit) {
+  const expr = document.getElementById("calcInput").value.trim();
+  const out = document.getElementById("calcResult");
+  if (!expr) { out.textContent = "0"; return; }
+  // Safe math eval: only digits, operators, parens, decimals, whitespace
+  if (!/^[0-9+\-*/().\s]+$/.test(expr)) { out.textContent = "(only numbers and + − × ÷ allowed)"; return; }
+  try {
+    const result = Function('"use strict"; return (' + expr + ')')();
+    if (typeof result === "number" && isFinite(result)) {
+      out.textContent = result.toLocaleString(undefined, { maximumFractionDigits: 6 });
+    } else {
+      out.textContent = "?";
+    }
+  } catch (e) { out.textContent = "?"; }
+}
+// Live eval as user types
+document.addEventListener("DOMContentLoaded", () => {
+  const inp = document.getElementById("calcInput");
+  if (inp) {
+    inp.addEventListener("input", () => calcTryEval(false));
+    inp.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); calcEval(); } });
+  }
+  // Make calculator panel draggable
+  const panel = document.getElementById("calcPanel");
+  const header = document.getElementById("calcHeader");
+  if (panel && header) {
+    let dragging = false, offsetX = 0, offsetY = 0;
+    header.addEventListener("mousedown", (e) => {
+      dragging = true;
+      const rect = panel.getBoundingClientRect();
+      offsetX = e.clientX - rect.left; offsetY = e.clientY - rect.top;
+    });
+    document.addEventListener("mousemove", (e) => {
+      if (!dragging) return;
+      panel.style.left = (e.clientX - offsetX) + "px";
+      panel.style.top = (e.clientY - offsetY) + "px";
+      panel.style.right = "auto";
+    });
+    document.addEventListener("mouseup", () => { dragging = false; });
+  }
+});
+
+document.getElementById("startBtn").addEventListener("click", async () => {
+  const name = document.getElementById("studentName").value.trim();
+  const email = document.getElementById("studentEmail").value.trim().toLowerCase();
+  const pwd = document.getElementById("accessPassword").value.trim();
+  if (!name) { alert("Please enter your full name."); return; }
+  const domainOK = EMAIL_DOMAINS_ALLOWED.some(d => email.endsWith(d));
+  if (!email || !domainOK) {
+    alert("You must use your UTEP email (" + EMAIL_DOMAINS_ALLOWED.join(" or ") + ")"); return;
+  }
+  // Attempt to decrypt the questions using the code as the password
+  let decrypted = null;
+  try {
+    document.getElementById("startBtn").disabled = true;
+    document.getElementById("startBtn").textContent = "Verifying…";
+    decrypted = await decryptQuestions(pwd);
+  } catch (e) {
+    document.getElementById("startBtn").disabled = false;
+    document.getElementById("startBtn").textContent = "Begin Attempt 1 →";
+    alert("Incorrect access code. Please see your instructor.");
+    return;
+  }
+  QUESTIONS = decrypted;
+  document.getElementById("startBtn").disabled = false;
+  document.getElementById("startBtn").textContent = "Begin Attempt 1 →";
+  if (!document.getElementById("agreeBox").checked) { alert("You must agree to the test environment rules."); return; }
+
+  const now = MT_NOW();
+  if (now > A2_DL) { alert("The quiz is closed. The final deadline has passed."); return; }
+
+  currentKey = storageKey(name, email);
+  let state = loadState(currentKey);
+
+  if (!state) {
+    state = { name, email, created: now.toISOString(), attempt1: null, attempt2: null, violations: [] };
+    saveState(currentKey, state);
+  }
+
+  // HARD LOCK: if student has already completed attempt 2, they cannot access the test again.
+  // They CAN see their results page (to re-download the JSON for Blackboard) but cannot retake.
+  if (state.locked || state.attempt2) {
+    state.locked = true;
+    saveState(currentKey, state);
+    renderResults(state);
+    return;
+  }
+  if (state.attempt1 && state.attempt1.wrong.length === 0) {
+    state.locked = true;
+    saveState(currentKey, state);
+    renderResults(state);
+    return;
+  }
+  if (state.attempt1) { renderResults(state); return; }
+
+  // RESUME: if student already started Attempt 1 (startTime set) but didn't submit, resume
+  if (state.attempt1_startTime) {
+    const elapsedMs = Date.now() - state.attempt1_startTime;
+    const durationMs = ATTEMPT1_DURATION_MINUTES * 60 * 1000;
+    if (elapsedMs >= durationMs) {
+      // Timer expired while student was away — auto-submit with whatever answers
+      startAttempt(1);
+      // startTimer will immediately trigger autoSubmitAttempt1 on first tick
+      return;
+    }
+    startAttempt(1);
+    return;
+  }
+
+  // Instructor bypass: pvatsa@utep.edu can start anytime (for testing / TA walkthrough)
+  const isInstructor = (email === "pvatsa@utep.edu");
+
+  if (!isInstructor && now < A1_OPEN) {
+    const hrs = ((A1_OPEN - now) / (1000*60*60)).toFixed(1);
+    alert(`Attempt 1 opens at 12:00 PM Mountain Time on April 16, 2026.\n(In ${hrs} hours.) You cannot start yet.`);
+    return;
+  }
+  if (!isInstructor && now > A1_DL) { alert("The Attempt 1 window (12:00 PM – 1:20 PM MT) has closed for starting new attempts. Contact your instructor."); return; }
+  startAttempt(1);
+});
+
+document.getElementById("submitBtn").addEventListener("click", () => {
+  const form = document.getElementById("quizForm");
+  const state = loadState(currentKey);
+  const scope = currentAttempt === 1 ? QUESTIONS.map((_, i) => i) : state.attempt1.wrong;
+  const answers = {};
+  const wrong = [];
+  let correctCount = 0;
+
+  for (const qi of scope) {
+    const sel = form.querySelector(`input[name="q${qi}"]:checked`);
+    if (!sel) { alert(`Please answer all questions before submitting. (Question ${scope.indexOf(qi)+1} unanswered.)`); return; }
+    const val = parseInt(sel.value, 10);
+    answers[qi] = val;
+    if (val === QUESTIONS[qi].a) correctCount++;
+    else wrong.push(qi);
+  }
+
+  const scorePct = (correctCount / scope.length) * 100;
+  const attemptData = { answers, wrong, correctCount, total: scope.length, scorePct, timestamp: new Date().toISOString(), violations: violations.slice() };
+
+  if (currentAttempt === 1) {
+    state.attempt1 = attemptData;
+    if (wrong.length === 0) {
+      state.finalPct = 100;
+      state.finalLabel = "Attempt 1: 20/20 (no second attempt needed)";
+      emailFinal(state);
+    } else {
+      state.finalPct = scorePct;
+      state.finalLabel = `Attempt 1: ${correctCount}/20 (${scorePct.toFixed(1)}%) — second attempt available`;
+    }
+  } else {
+    state.attempt2 = attemptData;
+    // Grading: Attempt 1 correct = full credit (1.0 each);
+    // Attempt 2 correct on retake = half credit (0.5 each).
+    // Final points = (A1 correct × 1.0) + (A2 correct × 0.5); divided by 20 total questions.
+    const a1Correct = state.attempt1.correctCount;
+    const a2Correct = attemptData.correctCount;
+    const totalQuestions = 20;
+    const earnedPoints = (a1Correct * 1.0) + (a2Correct * 0.5);
+    state.finalPct = (earnedPoints / totalQuestions) * 100;
+    state.earnedPoints = earnedPoints;
+    state.totalQuestions = totalQuestions;
+    state.finalLabel = `Attempt 1: ${a1Correct}/20 correct (full credit) + Attempt 2: ${a2Correct}/${attemptData.total} correct (half credit) = ${earnedPoints.toFixed(1)}/${totalQuestions} points`;
+    state.locked = true; // HARD LOCK — no more attempts ever, for this student
+    state.lockedAt = new Date().toISOString();
+    emailFinal(state);
+  }
+  saveState(currentKey, state);
+  quizActive = false;
+  renderResults(state);
+});
+
+// No email / no third party. Students download a JSON file and upload to Blackboard.
+// This function is a no-op placeholder so existing call sites don't break.
+function emailFinal(state) { /* FERPA: no transmission. Results download + Blackboard upload only. */ }
+
+// Hard-kill enforcement: after QUIZ_KILL_ISO, replace entire page
+function enforceKillDate() {
+  const killDate = new Date(QUIZ_KILL_ISO);
+  if (new Date() >= killDate) {
+    document.querySelector(".wrap").innerHTML = `
+      <header class="banner"><h1>Quiz Permanently Closed</h1>
+      <p>FIN 4329 Test 2 Quiz closed at 11:59 PM Mountain Time on April 16, 2026. Contact your instructor with any questions.</p></header>`;
+    return true;
+  }
+  return false;
+}
+if (!enforceKillDate()) {
+  setInterval(enforceKillDate, 30000);
+  updateDeadlineBar();
+  setInterval(updateDeadlineBar, 60000);
+}
+</script>
+</body>
+</html>

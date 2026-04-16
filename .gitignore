@@ -1,0 +1,7 @@
+# NEVER commit these — they contain the plaintext questions and answers
+encrypt_questions.py
+inject_encrypted.py
+encrypted_blob.txt
+__pycache__/
+*.pyc
+.DS_Store

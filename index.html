@@ -1054,12 +1054,21 @@ document.getElementById("startBtn").addEventListener("click", async () => {
   // Instructor bypass: pvatsa@utep.edu can start anytime (for testing / TA walkthrough)
   const isInstructor = (email === "pvatsa@utep.edu");
 
-  if (!isInstructor && now < A1_OPEN) {
+  // Extended-deadline exceptions: individual students granted permission to
+  // start Attempt 1 outside the normal 12:00-1:20 PM window. They still get
+  // the same 80-min personal timer and must finish before the 11:59 PM
+  // Attempt 2 hard deadline (and the April 17 kill date).
+  const EXTENDED_DEADLINE_EMAILS = [
+    "eahernandez17@miners.utep.edu"
+  ];
+  const hasException = EXTENDED_DEADLINE_EMAILS.map(e => e.toLowerCase()).includes(email.toLowerCase());
+
+  if (!isInstructor && !hasException && now < A1_OPEN) {
     const hrs = ((A1_OPEN - now) / (1000*60*60)).toFixed(1);
     alert(`Attempt 1 opens at 12:00 PM Mountain Time on April 16, 2026.\n(In ${hrs} hours.) You cannot start yet.`);
     return;
   }
-  if (!isInstructor && now > A1_DL) { alert("The Attempt 1 window (12:00 PM – 1:20 PM MT) has closed for starting new attempts. Contact your instructor."); return; }
+  if (!isInstructor && !hasException && now > A1_DL) { alert("The Attempt 1 window (12:00 PM – 1:20 PM MT) has closed for starting new attempts. Contact your instructor."); return; }
   startAttempt(1);
 });
 
